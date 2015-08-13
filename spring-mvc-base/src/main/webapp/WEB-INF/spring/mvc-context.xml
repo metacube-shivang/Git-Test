@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <context:component-scan base-package="com.practice.dependency_tester.controller"/>
+    <context:annotation-config/>
+
+    <!-- Configures the @Controller programming model -->
+    <mvc:annotation-driven/>
+
+    <!-- <mvc:view-controller path="/ping" view-name="ping"/> -->
+
+    <!-- Configures Handler Interceptors -->
+    <mvc:interceptors>
+        <!-- Changes the locale when a 'locale' request parameter is sent; e.g. /?locale=de -->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+        <bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor" />
+    </mvc:interceptors>
+
+<!-- 
+    <mvc:resources mapping="/assets-${project.buildNumber}/**" location="/assets/" cache-period="31556926"/>
+    <mvc:resources mapping="/images/datasetversion_news_item/**/" location="file:///${image.files.path.base}"/>
+    <mvc:resources mapping="/images/info_page/**/" location="file:///${image.files.path.base.info.page}"/>
+ -->    
+    
+    <!-- Saves a locale change using a cookie -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/>
+
+    <!--&lt;!&ndash; Resolves view names to protected .jsp resources within the /WEB-INF/views directory &ndash;&gt;-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="order" value="1"/>
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+	
+	<!-- <bean class="org.springframework.web.servlet.view.XmlViewResolver">
+		<property name="location" value="/WEB-INF/spring/spring-custom-views.xml"/>
+		<property name="order" value="0" />
+	</bean> -->
+
+    <!-- <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="order" value="1"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+    </bean> -->
+    
+    <!-- <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles/config/definition-tracker.xml</value>
+                <value>/WEB-INF/tiles/config/definition-consulting.xml</value>
+            </list>
+        </property>
+        resolving preparer names as Spring bean definition names
+        <property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
+    </bean> -->
+</beans>

@@ -1,0 +1,317 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.practice</groupId>
+	<artifactId>dependency-tester</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>dependency-tester</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <spring.framework.version>4.0.4.RELEASE</spring.framework.version>
+        <!-- <spring.security.version>3.2.3.RELEASE</spring.security.version> -->
+        <spring-integration.version>3.0.2.RELEASE</spring-integration.version>
+        <spring-rabbit.version>1.3.2.RELEASE</spring-rabbit.version>
+        <spring-integration-amqp.version>3.0.2.RELEASE</spring-integration-amqp.version>
+        <spring-integration-xml.version>3.0.2.RELEASE</spring-integration-xml.version>
+        <spring.testFramework.version>4.0.4.RELEASE</spring.testFramework.version>
+        <spring-xml.version>2.1.4.RELEASE</spring-xml.version>
+        <spring-remoting.version>2.0.8</spring-remoting.version>
+        <spring-mobile.version>1.1.1.RELEASE</spring-mobile.version>
+
+        <!-- <tomcat.version>7.0.41</tomcat.version> -->
+        <!-- <lucene.version>4.10.3</lucene.version> -->
+        <!-- <netty.version>4.0.21.Final</netty.version> -->
+        <!-- <hibernate.version>4.3.5.Final</hibernate.version> -->
+        <!-- <postgresql.version>9.3-1101-jdbc41</postgresql.version> -->
+        <!-- <ehcache-jgroupsreplication.version>1.7</ehcache-jgroupsreplication.version> -->
+        <!-- <ehcache-core.version>2.6.9</ehcache-core.version> -->
+
+        <!-- <keystones.messaging.jira.producer.version>4.3.1</keystones.messaging.jira.producer.version> -->
+        <!-- <keystones.log4j.appender.version>4.3.1</keystones.log4j.appender.version> -->
+        <!-- <keystones.jira.remote-api.version>4.3.1</keystones.jira.remote-api.version> -->
+        <!-- <keystones.utils.common>4.3.1</keystones.utils.common> -->
+        <!-- <keystones.jira.producer.version>4.3.1</keystones.jira.producer.version> -->
+
+        <!-- <qtpublish.version>2.1-SNAPSHOT</qtpublish.version> -->
+        <!-- <commons.version>0.0.64</commons.version> -->
+
+        <org.slf4j.version>1.7.7</org.slf4j.version>
+        <!-- <log4j.version>2.0</log4j.version> -->
+        <!-- <tiles.version>3.0.3</tiles.version> -->
+        <!-- <poi.version>3.10-FINAL</poi.version> -->
+        <!-- <mvel.version>2.1.9.Final</mvel.version> -->
+        <!-- <joda.version>2.3</joda.version> -->
+
+        <testng.version>6.8.8</testng.version>
+        <!-- <unitils.version>3.4.1</unitils.version> -->
+        <!-- <hsqldb.version>2.3.2</hsqldb.version> -->
+        
+        <!-- High performance libraries -->
+        <!-- <fastutils.version>6.5.15</fastutils.version> -->
+        <!-- <dsiutils.version>2.2.0</dsiutils.version> -->
+        <!-- <constretto.version>2.1.0</constretto.version> -->
+        
+        <!-- <jcraft.jsch.version>0.1.51</jcraft.jsch.version> -->
+        <!-- <zingchart.model.version>1.0-SNAPSHOT</zingchart.model.version> -->
+        
+        <qt.rest.api.version>1.0.0-SNAPSHOT</qt.rest.api.version>
+		
+	</properties>
+
+
+	<distributionManagement>
+		<repository>
+			<id>idc.internal.release.repo</id>
+			<name>IDC Internal Repository for releases</name>
+			<url>http://artifactory.insideidc.com/artifactory/libs-release-local</url>
+		</repository>
+		<snapshotRepository>
+			<id>idc.internal.snapshot.repo</id>
+			<name>IDC Internal Repository for snapshots</name>
+			<url>http://artifactory.insideidc.com/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+
+    <repositories>
+        <repository>
+            <id>spring-milestone</id>
+            <name>Spring Maven MILESTONE Repository</name>
+            <url>http://repo.springsource.org/libs-milestone</url>
+        </repository>
+
+        <repository>
+            <id>apache.releases</id>
+            <name>Apache Release Repository</name>
+            <url>http://repository.apache.org/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+
+        <repository>
+            <id>repository.springframework.milestone</id>
+            <name>Spring Framework Maven Milestone Repository</name>
+            <url>http://maven.springframework.org/milestone/</url>
+        </repository>
+
+		<repository>
+			<id>idc.internal.release.repo</id>
+			<url>http://artifactory.insideidc.com/artifactory/libs-release-local</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>idc.internal.snapshot.repo</id>
+			<url>http://artifactory.insideidc.com/artifactory/libs-snapshot-local</url>
+			<layout>default</layout>
+		</repository>
+    </repositories>
+
+
+	<dependencies>
+	
+		<!-- SPRING -->
+		<!-- <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.framework.version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-xml</artifactId>
+			<version>${spring-xml.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-core</artifactId>
+			<version>${spring-integration.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-amqp</artifactId>
+			<version>${spring-integration-amqp.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-xml</artifactId>
+			<version>${spring-integration-xml.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+			<version>${spring-rabbit.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.testFramework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-remoting</artifactId>
+			<version>${spring-remoting.version}</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.mobile</groupId>
+			<artifactId>spring-mobile-device</artifactId>
+			<version>${spring-mobile.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.6.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.8</version>
+		</dependency>
+	
+		<!-- Jackson JSON -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+	
+		<!-- Apache Commmons -->
+		<dependency>
+			<artifactId>commons-lang</artifactId>
+			<groupId>commons-lang</groupId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+	
+	
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j.version}</version>
+		</dependency>
+
+
+		<!-- TestNG -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+		</dependency>
+		
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>14.0.1</version>
+        </dependency>
+        
+        
+        <!-- <dependency>
+            <groupId>com.idc.querytool</groupId>
+            <artifactId>common</artifactId>
+            <version>3.13.0</version>
+        </dependency> -->
+        
+		<dependency>
+        	<groupId>com.idc.querytool-rest-endpoint</groupId>
+        	<artifactId>qt-rest-client</artifactId>
+        	<version>${qt.rest.api.version}</version>
+        </dependency>
+        
+		
+	</dependencies>
+	
+	
+	<build>
+		<finalName>spring-base</finalName>
+	</build>
+	
+</project>
